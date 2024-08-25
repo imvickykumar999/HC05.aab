@@ -15,36 +15,36 @@ async def main():
 
 asyncio.run(main())
 
-# List all available COM ports
-ports = serial.tools.list_ports.comports()
+def find_hc05_com_port():
+    # List all available COM ports
+    ports = serial.tools.list_ports.comports()
+    
+    for port in ports:
+        # Replace with a more specific check if needed
+        if "USB Serial Device" in port.description or "HC-05" in port.description:
+            return port.device
+    
+    return None
 
-for port in ports:
-    print(f"Port: {port.device}, Description: {port.description}")
+# Dynamically find the HC-05 COM port
+bluetooth_serial_port = find_hc05_com_port()
 
-# Replace with your Bluetooth COM port or device path
-# Example for Windows: 'COMx' where x is the port number
-# Example for Linux: '/dev/rfcomm0'
-bluetooth_serial_port = port.device  # Replace 'COMx' with your actual port
+if bluetooth_serial_port:
+    try:
+        # Initialize serial connection
+        ser = serial.Serial(bluetooth_serial_port, baudrate=9600, timeout=1)
+        time.sleep(2)  # Give the connection time to establish
 
-# Initialize serial connection
-ser = serial.Serial(bluetooth_serial_port, baudrate=9600, timeout=1)
+        # Send the "1" command
+        ser.write(b'1')
+        print(f"Sent '1' to HC-05 on port {bluetooth_serial_port}")
 
-time.sleep(2)  # Give the connection time to establish
-
-try:
-    # Send the "0" command
-    ser.write(b'1')
-    print("Sent '1' to HC-05")
-except Exception as e:
-    print(f"Failed to send: {e}")
-finally:
-    # Close the serial connection
-    ser.close()
-
-# OUTPUT
-r'''
-(myenv) C:\Users\surface\Documents\GitHub\HC05.aab>python HC05.p
-4C:82:A9:22:7A:89: None
-Port: COM6, Description: USB Serial Device (COM6)
-Sent '1' to HC-05
-'''
+    except serial.SerialException as e:
+        print(f"Serial Exception: {e}")
+    except Exception as e:
+        print(f"Failed to send: {e}")
+    finally:
+        if 'ser' in locals() and ser.is_open:
+            ser.close()
+else:
+    print("HC-05 not found among the available COM ports.")
