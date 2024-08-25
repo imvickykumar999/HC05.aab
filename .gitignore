@@ -1,2 +1,17 @@
+*.iml
+.gradle
+/local.properties
+HomeAutomation/.idea/caches
+HomeAutomation/.idea/libraries
+HomeAutomation/.idea/modules.xml
+HomeAutomation/.idea/workspace.xml
+HomeAutomation/.idea/navEditor.xml
+HomeAutomation/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
 
 myenv/
+*/secret.jks
