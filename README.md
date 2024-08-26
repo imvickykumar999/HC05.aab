@@ -1,6 +1,6 @@
 # `HC05.aab`
 
-    Android App in Kotlin to Communicate HC05 via Arduino UNO
+    Android App in Java to Communicate HC05 via Arduino UNO
 
 ![image](https://github.com/user-attachments/assets/3bda758e-612b-4aa7-904d-14e89fa0d8cf)
 ![Arduino](https://github.com/user-attachments/assets/a9070b23-6209-4017-8a65-3da5941be96b)
