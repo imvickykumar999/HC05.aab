@@ -4,6 +4,7 @@
 
 ![image](https://github.com/user-attachments/assets/3bda758e-612b-4aa7-904d-14e89fa0d8cf)
 ![Arduino](https://github.com/user-attachments/assets/a9070b23-6209-4017-8a65-3da5941be96b)
+![image](https://github.com/user-attachments/assets/614d9e6a-215d-4dc8-add3-1c9325b41811)
 
 ### 1. **ListPicker1.BeforePicking**
 - **Function:** Before the user selects from the list of Bluetooth devices, the app retrieves the available Bluetooth devices.
